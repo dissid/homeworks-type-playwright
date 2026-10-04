@@ -40,7 +40,7 @@ export default defineConfig({
   projects: [
     {
       name: "Coffee-Cart",
-      testMatch: ["**/Smoke.spec.ts", "**/Smoke-css.spec.ts"],
+      testMatch: ["**/Smoke.spec.ts", "**/Smoke-css.spec.ts", "**/variables.spec.ts"],
       use: {
         ...devices["Desktop Chrome"],
         testIdAttribute: "data-test",
