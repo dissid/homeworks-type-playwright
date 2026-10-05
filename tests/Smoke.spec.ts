@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import * as pageActions from "./page-actions";
 
 test("placeOrder", async ({ page }) => {
   await page.goto("https://coffee-cart.app/");
@@ -7,9 +8,7 @@ test("placeOrder", async ({ page }) => {
   await page.getByRole("link", { name: "Cart page" }).click();
   await page.locator('[data-test="checkout"]').click();
 
-  await page.getByRole("textbox", { name: "Name" }).fill("Dmytro");
-  await page.getByRole("textbox", { name: "Email" }).fill("test@test.com");
-  await page.getByRole("button", { name: "Submit" }).click();
+  await pageActions.fillPaymentForm(page);
 
   await expect(page.getByRole("button", { name: "Thanks for your purchase" })).toBeVisible();
   await expect(page.getByText("cart (0) ")).toBeVisible();
@@ -44,9 +43,7 @@ test("removeFromCart", async ({ page }) => {
 test("getDiscountedMocha", async ({ page }) => {
   await page.goto("https://coffee-cart.app/");
 
-  await page.locator('[data-test="Espresso"]').click();
-  await page.locator('[data-test="Espresso_Macchiato"]').click();
-  await page.locator('[data-test="Cappuccino"]').click();
+  await pageActions.addThreeCoffeeDrinks(page);
 
   await expect(page.locator(".promo")).toContainText("It's your lucky day! Get an extra cup of Mocha for $4.");
   await page.getByRole("button", { name: "Yes, of course!" }).click();
@@ -60,9 +57,7 @@ test("getDiscountedMocha", async ({ page }) => {
 test("declineDiscountedMocha", async ({ page }) => {
   await page.goto("https://coffee-cart.app/");
 
-  await page.locator('[data-test="Espresso"]').click();
-  await page.locator('[data-test="Espresso_Macchiato"]').click();
-  await page.locator('[data-test="Cappuccino"]').click();
+  await pageActions.addThreeCoffeeDrinks(page);
 
   await page.getByRole("button", { name: "Nah, I'll skip" }).click();
   await page.getByRole("link", { name: "Cart page" }).click();
