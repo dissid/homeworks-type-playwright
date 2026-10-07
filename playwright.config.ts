@@ -48,6 +48,10 @@ export default defineConfig({
       },
     },
     {
+      name: "If-Else",
+      testMatch: ["**/if-else/if-else.ts"],
+    },
+    {
       name: "Articles",
       testMatch: "**/Auth.spec.ts",
       use: {
