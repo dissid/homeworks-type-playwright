@@ -8,6 +8,10 @@ function getVotingMessage(age: number) {
   }
 }
 
+const someFunction = () => {
+  return "text";
+};
+
 test("Ви НE можете голосувати", () => {
   expect(getVotingMessage(17)).toBe("Ви ще не можете голосувати.");
 });
