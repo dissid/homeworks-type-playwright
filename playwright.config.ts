@@ -48,8 +48,12 @@ export default defineConfig({
       },
     },
     {
+      name: "If-Else",
+      testMatch: ["**/if-else/if-else.ts"],
+    },
+    {
       name: "Articles",
-      testMatch: "**/Auth.spec.ts",
+      testMatch: ["**/Auth.spec.ts", "**/article-verification.spec.ts"],
       use: {
         ...devices["Desktop Chrome"],
         baseURL: "http://104.168.59.50/articles",
