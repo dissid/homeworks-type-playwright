@@ -17,9 +17,8 @@ export async function createTenArticles(page: Page, newArticleData: ArticleData)
 
   for (let i = 0; i < 10; i++) {
     await open(page);
-    const articleData = { ...newArticleData, title: `${newArticleData.title} ${i + 1}` };
-    await fillNewArticleForm(page, articleData);
-    titles.unshift(articleData.title);
+    titles.push(newArticleData.title);
+    await fillNewArticleForm(page, newArticleData);
   }
 
   return titles;
